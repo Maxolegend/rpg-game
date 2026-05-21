@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            <h1>⚔️ DUNGEON QUEST ⚔️</h1>
+            <p>An Epic Text-Based RPG Adventure</p>
+        </div>
+
+        <div class="game-content">
+            <div class="left-panel">
+                <div class="character-panel">
+                    <h2>Character Stats</h2>
+                    <div class="stat">
+                        <span class="stat-label">Name:</span>
+                        <span id="charName" class="stat-value">---</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level:</span>
+                        <span id="charLevel" class="stat-value">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Experience:</span>
+                        <span id="charExp" class="stat-value">0/100</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">HP:</span>
+                        <span id="charHP" class="stat-value">100/100</span>
+                    </div>
+                    <div class="hp-bar">
+                        <div id="hpBar" class="hp-fill"></div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Mana:</span>
+                        <span id="charMana" class="stat-value">50/50</span>
+                    </div>
+                    <div class="mana-bar">
+                        <div id="manaBar" class="mana-fill"></div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="label">ATK</span>
+                            <span id="charAtk" class="value">10</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">DEF</span>
+                            <span id="charDef" class="value">5</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">Gold</span>
+                            <span id="charGold" class="value">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inventory-panel">
+                    <h2>Inventory</h2>
+                    <div id="inventoryList" class="inventory-list">
+                        <p class="empty-msg">Empty</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-panel">
+                <div class="story-panel">
+                    <div id="storyText" class="story-text">
+                        <p>Welcome to Dungeon Quest! Prepare yourself for an epic adventure...</p>
+                    </div>
+                </div>
+
+                <div class="action-panel">
+                    <div id="actionButtons" class="action-buttons">
+                        <button id="startBtn" class="btn btn-primary" onclick="game.start()">Start Game</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="enemy-panel">
+                    <h2>Enemy</h2>
+                    <div id="enemyInfo" class="enemy-info">
+                        <p class="empty-msg">No enemy encountered</p>
+                    </div>
+                </div>
+
+                <div class="log-panel">
+                    <h2>Battle Log</h2>
+                    <div id="battleLog" class="battle-log">
+                        <p class="log-entry">Game started...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
