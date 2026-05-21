@@ -123,9 +123,7 @@ class Game {
         this.player = new Player('Adventurer');
         
         this.updateUI();
-        this.showStory('You awaken in a dark dungeon with no memory of how you got here. ' +
-                       'Your only hope is to fight your way out. \n\n' +
-                       'Steel yourself, brave adventurer...');
+        this.showStory('You awaken in a dark dungeon with no memory of how you got here. Your only hope is to fight your way out. Steel yourself, brave adventurer...');
         this.showActions();
     }
 
@@ -152,6 +150,7 @@ class Game {
         const damage = this.player.getAttackPower();
         const actualDamage = this.currentEnemy.takeDamage(damage);
         this.addLog(`You attack for ${actualDamage} damage!`, 'damage');
+        this.updateUI();
 
         if (this.currentEnemy.hp <= 0) {
             this.endBattle(true);
@@ -189,6 +188,7 @@ class Game {
         const actualDamage = this.currentEnemy.takeDamage(damage);
         
         this.addLog(`🔥 You cast Fireball for ${Math.floor(actualDamage)} damage!`, 'critical');
+        this.updateUI();
 
         if (this.currentEnemy.hp <= 0) {
             this.endBattle(true);
@@ -211,6 +211,7 @@ class Game {
         this.player.heal(healAmount);
         
         this.addLog(`💚 You heal for ${healAmount} HP!`, 'heal');
+        this.updateUI();
 
         setTimeout(() => this.enemyAttack(), 500);
     }
@@ -250,12 +251,12 @@ class Game {
     visitShop() {
         this.inBattle = false;
         this.showStory(
-            '=== ARMOR SHOP ===\n\n' +
-            'Welcome, adventurer! Here are our finest goods:\n\n' +
-            '🗡️ Iron Sword - 50 gold (ATK +5)\n' +
-            '🛡️ Steel Armor - 75 gold (DEF +3)\n' +
-            '⚗️ Health Potion - 25 gold (Heal 50 HP)\n' +
-            '⚗️ Mana Potion - 20 gold (Restore 30 Mana)\n\n' +
+            '=== ARMOR SHOP ===<br><br>' +
+            'Welcome, adventurer! Here are our finest goods:<br><br>' +
+            '🗡️ Iron Sword - 50 gold (ATK +5)<br>' +
+            '🛡️ Steel Armor - 75 gold (DEF +3)<br>' +
+            '⚗️ Health Potion - 25 gold (Heal 50 HP)<br>' +
+            '⚗️ Mana Potion - 20 gold (Restore 30 Mana)<br><br>' +
             'Your gold: ' + this.player.gold
         );
         this.showShopActions();
@@ -332,7 +333,7 @@ class Game {
             <button class="btn btn-primary" onclick="game.buyItem('armor')">Buy Armor (75g)</button>
             <button class="btn btn-primary" onclick="game.buyItem('potion')">Buy Health Potion (25g)</button>
             <button class="btn btn-primary" onclick="game.buyItem('mana')">Buy Mana Potion (20g)</button>
-            <button class="btn btn-warning" colspan="2" onclick="game.showActions()">Return to Dungeon</button>
+            <button class="btn btn-warning" onclick="game.showActions()">Return to Dungeon</button>
         `;
     }
 
@@ -347,6 +348,8 @@ class Game {
     }
 
     updateUI() {
+        if (!this.player) return;
+        
         // Update character stats
         document.getElementById('charName').textContent = this.player.name;
         document.getElementById('charLevel').textContent = this.player.level;
